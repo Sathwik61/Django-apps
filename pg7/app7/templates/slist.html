@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of students </title>
+</head>
+<body>
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <h1>Lists:</h1>
+    </div>
+    <div>
+        {%for student in students%}
+        <ul style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+            <li>{{student.name}}</li> <a href="{% url 'detailed' student.id%}">Know More</a>
+            
+        </ul>
+        {%endfor%}
+    </div>
+</body>
+</html>

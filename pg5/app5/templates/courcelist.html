@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cource List</title>
+</head>
+<body>
+    <h1>Cources List</h1>
+    <div>
+        {%for cource in cources %}
+        <li>{{cource}} &nbsp; &nbsp; <a href="{% url 'student_detail' cource.id %}">See details</a>
+        </li>   
+        {%endfor%}
+    </div>
+
+    <div style="margin-top: 8vh;">
+        <a href="{% url 'reg_student' %}">Register A Student</a> &nbsp;&nbsp;
+        <a href="{% url 'reg_cource' %}">Register A Cource</a>
+    </div>
+</body>
+</html>

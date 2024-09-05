@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+</head>
+<body>
+    <h1 style="display: flex; justify-content: center;">Student Details </h1>
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+        <li><strong>Name :</strong> {{students.name}}</li>
+        <li><strong>Email :</strong>{{students.email}}</li>
+        <li><strong>Phone :</strong>{{students.phone}}</li>
+    </div>
+    <a style="display: flex; align-items: center; justify-content: center; margin-top: 10vh; font-size: large;" href="{% url 'list' %}">Go TO Home</a>
+</body>
+</html>

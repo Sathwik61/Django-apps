@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="{% static 'jquery.js'%}"></script>
+     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+</head>
+<body>
+    <h1>Enrolment form</h1>
+    <div>
+        <form id="enrollment"  >
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Enroll">
+
+        </form>
+    </div>
+    <div id="message">
+
+    </div>
+    <script>
+        $(document).ready(()=>{
+            $('#enrollment').submit((e)=>{
+                e.preventDefault();
+                let formdata=$('#enrollment').serialize();
+                console.log(formdata)
+                $.ajax({
+                    type:'POST',
+                    url:"{% url 'enroll' %}",
+                    data:formdata,
+                    dataType:'json',
+                    beforeSend:(xhr,settings)=>{
+                        xhr.setRequestHeader("X-CSRFTOKEN",'{{csrf_token}}')
+                    },
+                    success:(response)=>{
+                        $('#message').html('<p>'+response.msg+'</p>');
+                        console.log(response)
+                        $('#enrollment')[0].reset();
+                    },
+                    error:(xhr,status,error)=>{
+                        console.log("error",error)
+                        $('#message').html('<p>'+xhr.responseJSON.msg+'</p>');
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

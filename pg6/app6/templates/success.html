@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Succcess</title>
+</head>
+<body>
+    {% if title %}
+    <h1>Registration of you {{ title }} Successful!</h1>
+{% endif %}
+    <div>
+        <h2>Go to Home - <a href="{% url 'projectlist' %}">Here</a></h2> 
+    </div>
+</body>
+</html>

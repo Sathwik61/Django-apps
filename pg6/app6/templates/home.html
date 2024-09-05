@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+<body>
+    <div>
+        <h1>All project list </h1>
+        <div>
+            {%for project in projects%}
+            <li>{{project}} <a href="{% url  'details'  project.id %}">See more </a></li>
+            {%endfor%}
+        </div>
+    </div>
+       <div style="margin-top: 10vh;">
+        <a href="{% url  'reg_project'   %}">Register A project</a> &nbsp; &nbsp;
+        <a href="{% url  'reg_students'   %}">Register A Student</a> &nbsp; &nbsp;
+        
+       </div>
+</body>
+</html>

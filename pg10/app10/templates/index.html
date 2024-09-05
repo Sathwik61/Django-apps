@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search field</title>
+    <script src="{% static 'jquery.js' %}"></script>
+</head>
+<body>
+    <h1>Search the student name </h1>
+    <div>
+        <input type="text"  id="namee">
+        <button type="submit" id="btn">Seach</button>
+    </div>
+    <ul id="lists">
+
+    </ul>
+    <script>
+        $(document).ready(()=>{
+            $('#btn').click(()=>{
+                var sdata= $('#namee').val()
+                
+                $.ajax({
+                    type:'GET',
+                    url:'{% url "search" %}',
+                    data:{
+                        "sname":sdata
+                    },
+                    dataType:'json',
+                    success:(response)=>{
+                        $('#lists').empty();
+                        if(response.data && response.status==200){
+                            $.each(response.data,(index,course)=>{
+                                $('#lists').append('<li>'+course+'</li>')
+                            })
+                        }else{
+                            $('#lists').append('<li>No students found</li>')
+                        }
+                    },
+                    error:(xhr,status,error)=>{
+                        $('#lists').append('<li>'+error+'</li>')
+                }
+
+                }
+            )
+            })
+        })
+    </script>
+</body>
+</html>
